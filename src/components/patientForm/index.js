@@ -69,7 +69,7 @@ function PatientForm(){
             
             doc.text("Dr. John Doe", 30, 30);
             doc.text("John's clinical Services",30,50);
-            value.printSettings.includes('includeLogo') && doc.addImage(logo,360,30,30,30);
+            value.printSettings && (value.printSettings.includes('includeLogo') && doc.addImage(logo,360,30,30,30));
             doc.text(date.toDateString(),30,80);
             doc.text(date.getHours()+"hr : "+date.getMinutes()+"min",340,80);
             doc.line(30,100,400,100);
@@ -89,7 +89,7 @@ function PatientForm(){
             });
             doc.text("Follow Up On",30,140+(numOfMeds*50));
             doc.text(value.followupDate,30,160+(numOfMeds*50));
-            value.printSettings.includes('includeFooter') && <div>{doc.line(30,600,400,600)}{doc.text("Pune, Maharastra",30,620)}</div>
+            value.printSettings && (value.printSettings.includes('includeFooter') && <div>{doc.line(30,600,400,600)}{doc.text("Pune, Maharastra",30,620)}</div>)
             doc.save(`${value.patientName}.pdf`);
         }
     })
